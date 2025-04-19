@@ -8,7 +8,7 @@ import cors from "cors";
 import { Groq } from "groq-sdk";
 
 const app = express();
-const port = 3001;
+const PORT = process.env.PORT || 3001;
 
 const groq = new Groq({
   apiKey: process.env.GROQ_API_KEY,
@@ -16,6 +16,7 @@ const groq = new Groq({
 
 app.use(cors());
 app.use(express.json());
+app.use(express.static("public"));
 
 app.post("/api/song-recommendation", async (req, res) => {
   const { song } = req.body;
@@ -60,6 +61,6 @@ app.post("/api/song-recommendation", async (req, res) => {
   }
 });
 
-app.listen(port, () => {
-  console.log(`✅ Server running at http://localhost:${port}`);
+app.listen(PORT, () => {
+  console.log(`✅ Server running at http://localhost:${PORT}`);
 });

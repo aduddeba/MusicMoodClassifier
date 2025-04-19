@@ -1,7 +1,3 @@
-import { Groq } from "groq-sdk";
-
-const groq = new Groq();
-
 async function classifyMood() {
   const input = document.getElementById("songInput").value;
   const resultDiv = document.getElementById("result");
@@ -14,7 +10,7 @@ async function classifyMood() {
   resultDiv.textContent = "🎶 Thinking...";
 
   try {
-    const response = await fetch("https://musicmood.onrender.com", {
+    const response = await fetch("/api/song-recommendation", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

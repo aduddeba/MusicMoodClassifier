@@ -95,37 +95,6 @@
 
     <div id="result"></div>
 
-    <script>
-      async function classifyMood() {
-        const input = document.getElementById("songInput").value;
-        const resultDiv = document.getElementById("result");
-
-        if (!input.trim()) {
-          resultDiv.textContent = "Please enter a song.";
-          return;
-        }
-
-        resultDiv.textContent = "🎶 Thinking...";
-
-        try {
-          const response = await fetch(
-            "http://localhost:3001/api/song-recommendation",
-            {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({ song: input }),
-            }
-          );
-
-          const data = await response.json();
-          resultDiv.textContent = `🎧 Recommendation: ${data.result}`;
-        } catch (error) {
-          resultDiv.textContent = "❌ Something went wrong.";
-          console.error(error);
-        }
-      }
-    </script>
+    <script src="script.js"></script>
   </body>
 </html>
